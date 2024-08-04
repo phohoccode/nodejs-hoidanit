@@ -1,0 +1,28 @@
+{
+  "name": "nodejs-hoidanit",
+  "version": "1.0.0",
+  "description": "node js hoidanit",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/sever.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phohoccode/nodejs-hoidanit.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "phohoccode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phohoccode/nodejs-hoidanit/issues"
+  },
+  "homepage": "https://github.com/phohoccode/nodejs-hoidanit#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
