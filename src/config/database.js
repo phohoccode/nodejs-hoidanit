@@ -24,5 +24,4 @@ const connection = mysql.createPool({
     keepAliveInitialDelay: 0,
 });
 
-
 module.exports = connection

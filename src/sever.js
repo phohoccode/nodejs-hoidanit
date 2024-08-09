@@ -13,6 +13,10 @@ const hostname = process.env.HOST_NAME
 // config temple engine
 configViewEngine(app);
 
+// config req.body
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 // config static files
 app.use('/', webRoutes)
 
@@ -20,7 +24,7 @@ app.use('/', webRoutes)
 connection.query(
     'SELECT * FROM `user`',
     function (err, results, fields) {
-        console.log(results);
+        // console.log(results);
     }
 );
 
