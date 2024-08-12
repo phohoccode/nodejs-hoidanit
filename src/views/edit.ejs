@@ -12,16 +12,16 @@
 
     </ul>
 
-    <form action="/create-user" method="POST">
+    <form action="/update-user/<%= user.id %>" method="POST">
         <fieldset style="padding: 16px;">
-          <legend>Add new user:</legend>
+          <legend>Edit user:</legend>
           <label for="name">Full Name:</label>
-          <input type="text" id="name" name="name"><br><br>
+          <input type="text" value="<%= user.name %>" id="name" name="name"><br><br>
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email"><br><br>
+          <input type="email" value="<%= user.email %>" id="email" name="email"><br><br>
           <label for="city">City:</label>
-          <input type="text" id="city" name="city"><br><br>
-          <input type="submit" value="Save">
+          <input type="text" value="<%= user.city %>" id="city" name="city"><br><br>
+          <input type="submit" value="Submit">
         </fieldset>
       </form>
   </body>

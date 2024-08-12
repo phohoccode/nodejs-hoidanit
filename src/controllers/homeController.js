@@ -1,14 +1,12 @@
-const connection = require('../config/database')
-const { getAllUser } = require('../services/CRUDService')
+const { getAllUser, getUserById, createNewUser, updateUserById, deleteUserById } = require('../services/CRUDService')
 
 const getHomepage = async (req, res) => {
-    // connection.query(`select * from user`, function (err, results) {
-    //     console.log(results)
-    //     res.render('homepage.ejs', { listUser: results })
-    // })
-    const users = await getAllUser();
-    res.render('homepage.ejs', { listUser: users })
-    console.log('Users:', users);
+    try {
+        const users = await getAllUser();
+        res.render('homepage.ejs', { listUser: users })
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 
@@ -17,17 +15,51 @@ const getCreatePage = (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    try {
+        const { name, email, city } = req.body
+        await createNewUser(name, email, city, res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getUpdatePage = async (req, res) => {
+    const { id } = req.params
+    try {
+        const user = await getUserById(id)
+        console.log(user);
+        res.render('edit.ejs', { user: user })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const updateUser = async (req, res) => {
     const { name, email, city } = req.body
-    connection.query(
-        `insert into user (name, email, city) values(?,?,?)`,
-        [name, email, city], function (err, results) {
-            console.log('create user success!')
-        }
-    )
+    const id = req.params.id
+    try {
+        await updateUserById(id, name, email, city, res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const deleteUser = async (req, res) => {
+    const { id } = req.params
+    console.log(id);
+    
+    try {
+        await deleteUserById(id, res)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
     getHomepage,
     createUser,
-    getCreatePage
+    getCreatePage,
+    getUpdatePage,
+    updateUser,
+    deleteUser
 }
